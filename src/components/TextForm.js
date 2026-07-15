@@ -43,15 +43,15 @@ const speak = () => {
 
   <textarea className="form-control" value={Text} onChange={HandleOnChange} style={{backgroundColor :props.mode === 'dark' ? 'grey' : 'white',color:props.mode==='dark'?'white':'#042743'}} id="MYBOX"  rows ="8"></textarea>
 </div>
-<button className="btn btn-primary mx-2"  onClick={HandleUpClick}>Convert to Upper Case</button>
-<button className="btn btn-primary mx-2 " onClick={HandleLoClick}>Convert to Lower Case</button>
-<button className="btn btn-primary" onClick={HandleClearClick}>Clear Text</button>
-<button type="submit" onClick={speak} className="btn btn-primary mx-2 my-2">Speak</button>
+<button disabled={Text.length===0} className="btn btn-primary mx-2 my-2"  onClick={HandleUpClick}>Convert to Upper Case</button>
+<button disabled={Text.length===0} className="btn btn-primary mx-2 my-2" onClick={HandleLoClick}>Convert to Lower Case</button>
+<button disabled={Text.length===0} className="btn btn-primary mx-2 my-2" onClick={HandleClearClick}>Clear Text</button>
+<button disabled={Text.length===0} type="submit" onClick={speak} className="btn btn-primary mx-2 my-2">Speak</button>
     </div>
     <div className="container my-2  "style={{color :props.mode === 'dark' ? 'white' : '#042743'}}>
 <h1>Your text summary</h1>
-<p> {Text.split(" ").length-1} words {Text.length} characters</p>
-<p> {0.008 *Text.split(" ").length} Minutes to Read </p>
+<p> {Text.split(" ").filter((element)=>{return element.length!==0}).length} words {Text.length} characters</p>
+<p> {0.008 *Text.split(" ").filter((element)=>{return element.length!==0}).length} Minutes to Read </p>
     </div>
      </>
   )
